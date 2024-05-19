@@ -25,7 +25,8 @@ function getRandomNumber(min, max) {
 function checkGuess() {
   // Get value from guess input element
   const guess = parseInt(guessInput.value, 10);
-  attempts = attempts + 1;
+
+  attempts = attempts + 1;  
 
   hideAllMessages(messages);
 
@@ -37,13 +38,14 @@ function checkGuess() {
 
     submitButton.disabled = true;
     guessInput.disabled = true;
+    resetButton.style.display = '';
   }
 
   if (guess !== targetNumber) {
     if (guess < targetNumber) {
       tooLowMessage.style.display = '';
     } else {
-      tooLowMessage.style.display = '';
+      tooHighMessage.style.display = '';
     }
 
     const remainingAttempts = maxNumberOfAttempts - attempts;
@@ -55,12 +57,14 @@ function checkGuess() {
   if (attempts === maxNumberOfAttempts) {
     submitButton.disabled = true;
     guessInput.disabled = true;
+    resetButton.style.display = '';
   }
 
   guessInput.value = '';
 }
 
 function hideAllMessages(messages) {
+  console.log("hideAllMessages called with messages:", messages);
   for (let elementIndex = 0; elementIndex < messages.length; elementIndex++) {
     messages[elementIndex].style.display = 'none';
   }
